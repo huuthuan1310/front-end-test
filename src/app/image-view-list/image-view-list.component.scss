@@ -1,0 +1,26 @@
+@mixin numberImgPerRow($n) {
+  width: calc(100% / #{$n});
+}
+
+.image-viewer-list {
+  .row {
+    margin: 0;
+
+    .image-item {
+      transition: width .2s;
+
+      @media (min-width: 480px) {
+        @include numberImgPerRow(1);
+      }
+
+      @media (min-width: 768px) {
+        @include numberImgPerRow(3);
+      }
+
+      @media (min-width: 1024px) {
+        @include numberImgPerRow(5);
+      }
+    }
+  }
+
+}

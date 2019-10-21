@@ -1,0 +1,18 @@
+<div class="image-container">
+  <img class="image-item" [src]="'../assets/img/' + imgItem.url" alt="">
+  <div class="image-info">
+    <div class="image-name">{{ imgItem.name }}</div>
+    <div class="image-rating d-flex">
+      <fa *ngIf="imgItem.star > 0" class="ban" name="ban" (click)="imgItem.star = 0; onRateChange()"></fa>
+      <ng-template #t let-fill="fill">
+        <span class="star" [class.full]="fill === 100">
+          <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+        </span>
+      </ng-template>
+
+      <ngb-rating [readonly]="imgItem.star > 0" [(rate)]="imgItem.star" (rateChange)="onRateChange()"
+        [resettable]="true" [starTemplate]="t" max="5">
+      </ngb-rating>
+    </div>
+  </div>
+</div>

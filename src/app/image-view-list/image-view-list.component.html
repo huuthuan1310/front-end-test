@@ -1,0 +1,7 @@
+<div class="image-viewer-list">
+  <div class="row">
+    <div class="image-item" *ngFor="let item of imgArray">
+      <app-image-item [imgItem]="item" (imgItemChange)="onImgItemChange()"></app-image-item>
+    </div>
+  </div>
+</div>
