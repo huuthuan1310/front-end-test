@@ -1,1 +1,15 @@
-<app-image-view-list [imgArray]="imgArr"></app-image-view-list>
+<div class="app-container">
+  <div class="app-section">
+    <h2>WINNERS</h2>
+  </div>
+  <app-image-view-list [imgArray]="imgArr" (sortList)="onSortTopList()" [topList]="true"></app-image-view-list>
+  <div class="app-section d-flex justify-content-between align-items-center">
+    <h2>SUBMISSONS</h2>
+    <span class="cursor-pointer">
+      <fa *ngIf="nameAsc" (click)="sortName()" name="sort-amount-desc"></fa>
+      <fa *ngIf="!nameAsc" (click)="sortName()" name="sort-amount-asc"></fa>
+    </span>
+  </div>
+  <app-image-view-list [imgArray]="imgArr" (sortList)="onSortTopList()"></app-image-view-list>
+</div>
+<app-footer></app-footer>

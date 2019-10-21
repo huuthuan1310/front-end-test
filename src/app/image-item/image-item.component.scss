@@ -1,26 +1,31 @@
 .image-container {
   //   padding: 50px;
   //   background-color: green;
-  //   transition: transform .2s;
   //   /* Animation */
   //   width: 200px;
   //   height: 200px;
   //   margin: 0 auto;
-
-  //   &:hover {
-  //     transform: scale(1.5);
-  //   }
   margin: 10px;
   position: relative;
+  transition: transform .1s;
 
   * {
     outline: none;
   }
 
   &:hover {
+    // transform: scale(1.2);
+    z-index: 1;
+
     .image-info {
-      text-align: center;
       height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+      .image-name {
+        text-align: center;
+      }
 
       // transform: scale(1.5);
       .image-rating {
@@ -29,12 +34,18 @@
         .star {
           font-size: 2rem;
         }
+
+        &--ban {
+          display: block;
+          font-size: 0.8rem;
+        }
       }
     }
   }
 
   .image-item {
     width: 100%;
+    border-radius: 10px;
   }
 
   .image-info {
@@ -44,7 +55,15 @@
     width: 100%;
     background: rgba(0, 0, 0, 0.5);
     color: white;
-    transition-delay: 1s;
+    padding: 10px;
+    border-radius: 10px;
+    align-items: center;
+
+    .image-name {
+      white-space: nowrap;
+      overflow: hidden !important;
+      text-overflow: ellipsis;
+    }
 
     .image-rating {
       $color-unset: #d3d3d3;
@@ -57,9 +76,13 @@
         color: $color-unset;
       }
 
-      .ban {
+      &--ban {
         @extend .star;
         cursor: pointer;
+        display: none;
+        border: 1px solid;
+        border-radius: 20px;
+        padding: 5px 10px;
 
         &:hover {
           color: $color-selected;

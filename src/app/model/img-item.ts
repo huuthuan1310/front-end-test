@@ -3,4 +3,5 @@ export class ImageItem {
     url: string;
     name: string;
     star: number;
+    rate: number;
 }

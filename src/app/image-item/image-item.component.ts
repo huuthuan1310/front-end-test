@@ -15,6 +15,11 @@ export class ImageItemComponent implements OnInit {
   }
 
   onRateChange() {
+    if (this.imgItem.star === 0) {
+      this.imgItem.rate -= 1;
+    } else {
+      this.imgItem.rate += 1;
+    }
     this.imgItemChange.emit(this.imgItem);
   }
 }

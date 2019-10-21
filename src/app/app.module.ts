@@ -7,18 +7,22 @@ import { ImageItemComponent } from './image-item/image-item.component';
 import { ImageViewListComponent } from './image-view-list/image-view-list.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { NgbModule, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+import { FooterComponent } from './footer/footer.component';
+import { OrderModule } from 'ngx-order-pipe';
 @NgModule({
   declarations: [
     AppComponent,
     ImageItemComponent,
-    ImageViewListComponent
+    ImageViewListComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
     AppRoutingModule,
     AngularFontAwesomeModule,
-    NgbRatingModule
+    NgbRatingModule,
+    OrderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
