@@ -5,3 +5,7 @@ export class ImageItem {
     star: number;
     rate: number;
 }
+export class UserInfo {
+    uid: number;
+    imgInfo: ImageItem[];
+}

@@ -1,4 +1,4 @@
-import { ImageItem } from './model/img-item';
+import { ImageItem, UserInfo } from './model/img-item';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,34 +8,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   title = 'front-end-test';
+  userInfo: UserInfo = new UserInfo();
   imgArr: ImageItem[];
-  nameAsc = false;
+  sortAsc = false;
   ngOnInit(): void {
-    this.imgArr = this.loadImage();
-    this.sortName();
-    if (!localStorage.getItem('imgArray')) {
-      localStorage.setItem('imgArray', JSON.stringify(this.imgArr));
+    this.imgArr = localStorage.getItem('imgArr') ? JSON.parse(localStorage.getItem('imgArr')) : this.generateImg(30);
+    this.userInfo = this.loadData();
+    if (!localStorage.getItem('userInfo')) {
+      localStorage.setItem('userInfo', JSON.stringify(this.userInfo));
+    }
+    if (!localStorage.getItem('imgArr')) {
+      localStorage.setItem('imgArr', JSON.stringify(this.imgArr));
     }
   }
 
-  loadImage() {
-    let imgArr: ImageItem[] = localStorage.getItem('imgArray') ? JSON.parse(localStorage.getItem('imgArray')) : [];
-    if (imgArr.length === 0) {
-      imgArr = this.generateImg();
+  loadData() {
+    const userInfo: UserInfo = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : new UserInfo();
+    if (Object.keys(this.userInfo).length === 0) {
+      userInfo.uid = this.getRandomInt(1, 1000);
     }
-    return imgArr;
+    return userInfo;
   }
 
-  generateImg() {
+  generateImg(numItem: number) {
     const imgArr: ImageItem[] = [];
-    for (let index = 1; index <= 30; index++) {
+    for (let index = 1; index <= numItem; index++) {
       const imgURL = 'photo-' + index + '.jpg';
       const imgName = 'Photo ' + index;
       imgArr.push({
         id: index,
         url: imgURL,
         name: imgName,
-        star: this.getRandomInt(0, 6),
+        star: 0,
         rate: this.getRandomInt(0, 100)
       });
     }
@@ -49,15 +53,6 @@ export class AppComponent implements OnInit {
   }
 
   sortName() {
-    this.nameAsc = !this.nameAsc;
-    if (this.nameAsc) {
-      this.imgArr.sort((a, b) => a.name > b.name ? 1 : ((b.name > a.name) ? -1 : 0));
-    } else {
-      this.imgArr.sort((a, b) => a.name < b.name ? 1 : ((b.name < a.name) ? -1 : 0));
-    }
-  }
-
-  onSortTopList() {
-    this.imgArr = this.loadImage();
+    this.sortAsc = !this.sortAsc;
   }
 }

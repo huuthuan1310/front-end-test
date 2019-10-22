@@ -1,18 +1,22 @@
 <div class="image-container">
   <img class="image-item" [src]="'../assets/img/' + imgItem.url" alt="">
   <div class="image-info">
-    <div class="image-name">{{ imgItem.name }}</div>
-    <div class="image-rating">
-      <ng-template #t let-fill="fill">
-        <span class="star" [class.full]="fill === 100">
-          <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
-        </span>
-      </ng-template>
+    <div class="image-info--left">
+      <div class="image-name">{{ imgItem.name }}</div>
+      <div class="image-rating">
+        <ng-template #t let-fill="fill">
+          <span class="star" [class.full]="fill === 100">
+            <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+          </span>
+        </ng-template>
 
-      <ngb-rating [readonly]="imgItem.star > 0" [(rate)]="imgItem.star" (rateChange)="onRateChange()"
-        [resettable]="true" [starTemplate]="t" max="5">
-      </ngb-rating>
+        <ngb-rating [readonly]="imgArr.length >= 10 || (imgItem.star > 0 && isUserVote)"
+          [(rate)]="imgItem.star" (rateChange)="onRateChange()" [resettable]="true" [starTemplate]="t" max="5">
+        </ngb-rating>
+      </div>
+      <div [ngClass]="{'visible': isUserVote && imgItem.star > 0}" class="image-rating--ban"
+        (click)="imgItem.star = 0; onRateChange()">Unvote</div>
     </div>
-    <div [ngClass]="{'visible': imgItem.star > 0, 'invisible': imgItem.star === 0}" class="image-rating--ban" (click)="imgItem.star = 0; onRateChange()">Unvote</div>
+    <div class="image-info--right">{{ imgItem.rate }} votes</div>
   </div>
 </div>

@@ -1,10 +1,4 @@
 .image-container {
-  //   padding: 50px;
-  //   background-color: green;
-  //   /* Animation */
-  //   width: 200px;
-  //   height: 200px;
-  //   margin: 0 auto;
   margin: 10px;
   position: relative;
   transition: transform .1s;
@@ -19,9 +13,14 @@
 
     .image-info {
       height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
+
+      &--left {
+        align-items: center;
+      }
+
+      &--right {
+        display: none;
+      }
 
       .image-name {
         text-align: center;
@@ -29,6 +28,7 @@
 
       // transform: scale(1.5);
       .image-rating {
+        display: flex;
         justify-content: center;
 
         .star {
@@ -58,6 +58,15 @@
     padding: 10px;
     border-radius: 10px;
     align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    &--left {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      flex: 1;
+    }
 
     .image-name {
       white-space: nowrap;
@@ -83,6 +92,7 @@
         border: 1px solid;
         border-radius: 20px;
         padding: 5px 10px;
+        visibility: hidden;
 
         &:hover {
           color: $color-selected;

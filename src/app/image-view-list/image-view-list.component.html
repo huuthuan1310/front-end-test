@@ -1,7 +1,8 @@
 <div class="image-viewer-list">
   <div class="row">
-    <div class="image-item" *ngFor="let item of imgArray | orderBy: 'rate' : true; let i = index">
-      <app-image-item *ngIf="topList && i < 6 || !topList" [(imgItem)]="item" (imgItemChange)="onImgItemChange($event)"></app-image-item>
+    <div class="image-item" *ngFor="let item of imgArray | orderBy: orderProp : sortAsc; let i = index">
+      <app-image-item *ngIf="topList && i < 6 || !topList" [disable]="item.disable" [(imgItem)]="item" (imgItemChange)="onImgItemChange($event)">
+      </app-image-item>
     </div>
   </div>
 </div>
